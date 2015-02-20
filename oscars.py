@@ -44,21 +44,21 @@ for winner in winners:
 	else:
 		winnerBoxes.append("N/A")
 
-# format all of the lists in USD, and calculate the average
+# format all of the lists in USD, and calculate the average. The format function uses string manipulation to return a result of type float, which enables calculations
 def format(string):
 	if string != 'N/A':
-		formattedString = string.replace(',', '')
-		formattedString = re.search(r"[-+]?\d*\.*\d+",formattedString).group()
-		formattedString = float(formattedString)
+		formattedResult = string.replace(',', '')
+		formattedResult = re.search(r"[-+]?\d*\.*\d+",formattedResult).group()
+		formattedResult = float(formattedResult)
 		if 'mil' in string:
-			formattedString *= 1000000
+			formattedResult *= 1000000
 		elif 'bil' in string:
-			formattedString *= 1000000000
+			formattedResult *= 1000000000
 		# catch numbers in GBP
 		if u'\xa3' in string:
-			return formattedString*1.57
+			return formattedResult*1.57
 		else:
-			return formattedString
+			return formattedResult
 
 # declare formatted arrays, and compute averages
 formattedBudgets, formattedBoxes = [], []
